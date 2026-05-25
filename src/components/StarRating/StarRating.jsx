@@ -18,11 +18,13 @@ const textStyle = {
 
 const StarRating = ({maxRating = 5}) => {
     const [stars,setStars] = useState(0)
+    const [tempStars,setTempStars] = useState(0)
+
 
   return (
     <div style={containerStyle}>
-        <div style={starContainerStyle}>{Array.from({length:maxRating},(_,i)=> <Star key={i} onClick={()=>setStars(i+1)} full={stars>=i+1}/>)}</div>
-        <p style={textStyle}>{stars || ""}</p>
+        <div style={starContainerStyle} >{Array.from({length:maxRating},(_,i)=> <Star key={i} onClick={()=>setStars(i+1)} full={tempStars ? tempStars >=i+1 : stars>=i+1} onHoverIn={()=>setTempStars(i+1)} onHoverOut={()=>setTempStars(0)}/>)}</div>
+        <p style={textStyle}>{tempStars || stars || "" }</p>
     </div>
   )
 }
