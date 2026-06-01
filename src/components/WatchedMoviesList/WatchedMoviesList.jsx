@@ -1,11 +1,10 @@
 import SummaryComponent from "../SummaryComponent/SummaryComponent";
 import WatchedMovieComponent from "../WatchedMovieComponent/WatchedMovieComponent";
-import { tempWatchedData } from "../../tempData";
 import { useState } from "react";
 
 const WatchedMoviesList = () => {
 
-  const [watched, setWatched] = useState(tempWatchedData);
+  const [watched, setWatched] = useState([]);
     const average = (arr) =>
     arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
