@@ -1,6 +1,6 @@
-const MovieComponent = ({ movie }) => {
+const MovieComponent = ({ movie, onSetMovieId }) => {
   return (
-    <li>
+    <li onClick={() => onSetMovieId(movie.imdbID)}>
       <img src={movie.Poster} alt={`${movie.Title} poster`} />
       <h3>{movie.Title}</h3>
       <div>
