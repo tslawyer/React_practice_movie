@@ -1,7 +1,5 @@
-import { useState } from "react";
+const NavComponent = ({ movies,query,setQuery }) => {
 
-const NavComponent = ({ movies }) => {
-  const [query, setQuery] = useState("");
   return (
     <>
       <nav className="nav-bar">
