@@ -1,5 +1,4 @@
-const NavComponent = ({ movies,query,setQuery }) => {
-
+const NavComponent = ({ movies, query, setQuery }) => {
   return (
     <>
       <nav className="nav-bar">

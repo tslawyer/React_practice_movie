@@ -3,9 +3,8 @@ import WatchedMovieComponent from "../WatchedMovieComponent/WatchedMovieComponen
 import { useState } from "react";
 
 const WatchedMoviesList = () => {
-
   const [watched, setWatched] = useState([]);
-    const average = (arr) =>
+  const average = (arr) =>
     arr.reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
 
   const avgImdbRating = average(watched.map((movie) => movie.imdbRating));
@@ -13,7 +12,6 @@ const WatchedMoviesList = () => {
   const avgUserRating = average(watched.map((movie) => movie.userRating));
 
   const avgRuntime = average(watched.map((movie) => movie.runtime));
-
 
   return (
     <>

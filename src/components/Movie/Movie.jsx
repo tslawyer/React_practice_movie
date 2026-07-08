@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
+import StarRating from "../StarRating/StarRating";
+import Loader from "../Loader/Loader";
 
-const Movie = ({ movieId, KEY }) => {
+const Movie = ({ movieId, KEY, onBack }) => {
   const [selectedMovie, setSelectedMovie] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchGetOneMovie = async () => {
       try {
-        console.log("MOVIE ID: ", movieId);
+        setIsLoading(true);
         const res = await fetch(
           `https://www.omdbapi.com/?i=${movieId}&apikey=${KEY}`,
         );
@@ -17,9 +20,8 @@ const Movie = ({ movieId, KEY }) => {
 
         const data = await res.json();
 
-        console.log("DATA", data);
-
         setSelectedMovie(data);
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -28,16 +30,21 @@ const Movie = ({ movieId, KEY }) => {
   }, [movieId]);
   return (
     <div>
-      {selectedMovie ? (
+      <button className="btn-back" onClick={onBack}>
+        &larr;
+      </button>
+      {isLoading && <Loader />}
+      {selectedMovie && (
         <div>
           <img src={selectedMovie.Poster} alt="" />
+          <div className="rating">
+            <StarRating maxRating={10} />
+          </div>
           <h1>{selectedMovie.Title}</h1>
           <p>{selectedMovie.Year}</p>
           <p>{selectedMovie.Runtime}</p>
           <p>{selectedMovie.Plot}</p>
         </div>
-      ) : (
-        <p>Loading..</p>
       )}
     </div>
   );

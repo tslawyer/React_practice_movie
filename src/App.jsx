@@ -45,6 +45,10 @@ function App() {
     fetchMovies();
   }, [query]);
 
+  const handleOnBack = () => {
+    setMovieId(null);
+  };
+
   return (
     <>
       <NavComponent movies={movies} query={query} setQuery={setQuery} />
@@ -58,7 +62,12 @@ function App() {
         </BoxComponent>
         <BoxComponent>
           {movieId ? (
-            <Movie key={movieId} movieId={movieId} KEY={KEY} />
+            <Movie
+              key={movieId}
+              movieId={movieId}
+              KEY={KEY}
+              onBack={handleOnBack}
+            />
           ) : (
             <WatchedMoviesList />
           )}
